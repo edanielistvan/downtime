@@ -1,0 +1,29 @@
+embed <drac2>
+default = get_gvar("48074aca-77bd-47e7-83e4-922f25fde978")
+character_data = load_json(character().get_cvar("tddsc_down_datjson", default=default))
+default = load_json(default)
+
+if character_data["version"] < default["version"]:
+    for k in character_data.keys():
+        if k != "version":
+            default[k] = character_data[k]
+    character_data = default
+
+args = [a.lower() for a in &ARGS&]
+
+TITLE = "Downtime Materials - List"
+DESC = ""
+
+mats = character_data["mats"]
+tiers = [f"t{i+1}" for i in range(len(mats["wood"]))]
+filteringKeys = args and any(k in args for k in mats.keys())
+filteringTiers = args and any(t in args for t in tiers)
+
+for k in mats.keys():
+    if not filteringKeys or (filteringKeys and k in args):
+        DESC += f"**{k.upper()}**\n{' | '.join([f'T{i+1}: {mats[k][i]}' for i in range(len(mats[k])) if not filteringTiers or (filteringTiers and f't{i+1}' in args)])}\n"
+
+VERSION = character_data["version"]
+
+character().set_cvar("tddsc_down_datjson", dump_json(character_data))
+</drac2> -title "{{TITLE}}" -desc "{{DESC}}" -thumb <image> -footer "v{{VERSION}} | Made by @thedancingdansicle"

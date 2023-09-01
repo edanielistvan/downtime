@@ -1,0 +1,36 @@
+embed <drac2>
+default = get_gvar("48074aca-77bd-47e7-83e4-922f25fde978")
+character_data = load_json(character().get_cvar("tddsc_down_datjson", default=default))
+default = load_json(default)
+
+if character_data["version"] < default["version"]:
+    for k in character_data.keys():
+        if k != "version":
+            default[k] = character_data[k]
+    character_data = default
+
+TITLE = "Downtime Materials - Undo"
+
+if character_data["mat_undo_type"] == "NONE":
+    DESC = "There are no operations to undo."
+else:
+    DESC = f"Undid {character_data['mat_undo_type']} operation.\n"
+
+    mats = character_data["mats"]
+    undm = character_data["mat_undo"]["mats"]
+
+    for k in mats.keys():
+        for i in range(len(mats[k])):
+            if undm[k][i] != mats[k][i]:
+                DESC += f"\nT{i+1} {k.upper()} **{mats[k][i]}** -> **{undm[k][i]}**,"
+    DESC = DESC[:-1]
+
+    character_data["mat_undo_type"] = "UNDO"
+    temp_to_mats = {k: v[:] for k, v in character_data["mat_undo"]["mats"].items()}
+    character_data["mat_undo"]["mats"] = {k: v[:] for k, v in character_data["mats"].items()}
+    character_data["mats"] = temp_to_mats
+    
+VERSION = character_data["version"]
+
+character().set_cvar("tddsc_down_datjson", dump_json(character_data))
+</drac2> -title "{{TITLE}}" -desc "{{DESC}}" -thumb <image> -footer "v{{VERSION}} | Made by @thedancingdansicle"

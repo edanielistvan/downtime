@@ -1,0 +1,97 @@
+{
+    "tool_prof_cvar": "toolProficiencies",
+    "tools": [
+        "alchemistssupplies", "brewerssupplies", "calligrapherssupplies", "carpenterstools",
+        "cartographerstools", "cobblerstools", "cooksutensils", "glassblowerstools",
+        "jewelerstools", "leatherworkerstools", "masonstools", "painterssupplies",
+        "potterstools", "smithstools", "tinkerstools", "weaverstools", "woodcarverstools",
+        "disguisekit", "forgerykit", "herbalismkit", "navigatorstools", "poisonerskit", 
+        "thievestools",
+        "diceset", "dragonchessset", "playingcardset", "threedragonanteset", "bagpipes",
+        "birdpipes", "drum", "dulcimer", "flute", "glaur", "handdrum", "horn", "longhorn",
+        "lute", "lyre", "panflute",  "shawm", "songhorn", "tantan", "thelarr", "tocken",
+        "viol", "wargong", "yarting", "zulkoon",
+        "landvehicles", "watervehicles"
+    ],
+    "tools_names": [
+        "Alchemist's Supplies","Brewer's Supplies","Calligrapher's Supplies","Carpenter's Tools",
+        "Cartographer's Tools","Cobbler's Tools","Cook's Utensils","Glassblower's Tools",
+        "Jeweler's Tools","Leatherworker's Tools","Mason's Tools","Painter's Supplies",
+        "Potter's Tools","Smith's Tools","Tinker's Tools","Weaver's Tools","Woodcarver's Tools",
+        "Disguise Kit","Forgery Kit","Herbalism Kit","Navigator's Tools","Poisoner's Kit",
+        "Thieves' Tools",
+        "Dice Set","Dragonchess Set","Playing Card Set","Three-Dragon Ante Set","Bagpipes",
+        "Birdpipes","Drum","Dulcimer","Flute","Glaur","Hand Drum","Horn","Longhorn","Lute",
+        "Lyre","Pan Flute","Shawm","Songhorn","Tantan","Thelarr","Tocken","Viol","Wargong",
+        "Yarting","Zulkoon",
+        "Land Vehicles","Water Vehicles"
+    ],
+    "stats": [
+        "strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"
+    ],
+    "gathering": {
+        "farms": {
+            "alts": ["farm"],
+            "primary": "food",
+            "secondary": "thread",
+            "tools": [6],
+            "stats": [3, 4, 5]
+        },
+        "foraging": {
+            "alts": ["forage"],
+            "primary": "herb",
+            "secondary": "wood",
+            "tools": [1, 11, 19],
+            "stats": [3, 4, 5]
+        },
+        "gem_mine": {
+            "alts": ["gem", "gemmine"],
+            "primary": "herb",
+            "secondary": "wood",
+            "tools": [8],
+            "stats": [0, 1, 2]
+        },
+        "hunting": {
+            "alts": ["hunt"],
+            "primary": "leather",
+            "secondary": "food",
+            "tools": [9, 5],
+            "stats": [1, 3, 4]
+        },
+        "logging": {
+            "alts": ["log"],
+            "primary": "wood",
+            "secondary": "herb",
+            "tools": [3, 16],
+            "stats": [0, 1, 2]
+        },
+        "mineshaft": {
+            "alts": ["mine", "shaft"],
+            "primary": "metal",
+            "secondary": "gem",
+            "tools": [10, 14],
+            "stats": [0, 1, 2]
+        },
+        "quarry": {
+            "alts": ["qua"],
+            "primary": "stone",
+            "secondary": "metal",
+            "tools": [10, 12],
+            "stats": [0, 1, 2]
+        },
+        "sand_pits": {
+            "alts": ["sand", "pits", "pit", "sandpits"],
+            "primary": "glass",
+            "secondary": "gem",
+            "tools": [7],
+            "stats": [3, 4, 5]
+        },
+        "silk_farm": {
+            "alts": ["silk", "silkfarm"],
+            "primary": "thread",
+            "secondary": "food",
+            "tools": [15, 4],
+            "stats": [3, 4, 5]
+        }
+    }
+}

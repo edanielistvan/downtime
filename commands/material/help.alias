@@ -1,0 +1,30 @@
+embed <drac2>
+default = get_gvar("48074aca-77bd-47e7-83e4-922f25fde978")
+character_data = load_json(character().get_cvar("tddsc_down_datjson", default=default))
+default = load_json(default)
+
+if character_data["version"] < default["version"]:
+    for k in character_data.keys():
+        if k != "version":
+            default[k] = character_data[k]
+    character_data = default
+
+TITLE = "Downtime Materials - Help"
+DESC = """`!down mat | !down mat help` - Show this screen
+`!down mat list <filters>` - Shows number of materials you have, based on filters
+`!down mat reset <filters>` - Reset materials to 0, based on filters
+`!down mat add [<filters> <amount> ...]` - Add <amount> to materials, based on filters. Can do multiple operations in a single command (e.g. ... t1 stone 5 t2 wood 3)
+`!down mat sub [<filters> <amount> ...]` - Sub <amount> from materials, based on filters. Can do multiple operations in a single command (e.g. ... t1 stone 5 t2 wood 3)
+`!down mat undo` - Undoes the latest `!down mat` command. Can undo the last undo.
+
+**Filters**
+You can use filters to limit commands to specific materials or tiers. Filters can be: `names of materials` (*wood, leather*) and `tiers` (*t1, t2, t3, t4, t5*).
+You can use as many as you like, `separated by spaces` (*e.g. t2 wood leather t1*).
+Filters only containing material names will effect all tiers of that material by default.
+Commands given with no filters will just affect all materials.
+Filters are not case sensitive"""
+VERSION = character_data["version"]
+
+
+character().set_cvar("tddsc_down_datjson", dump_json(character_data))
+</drac2> -title "{{TITLE}}" -desc "{{DESC}}" -thumb <image> -footer "v{{VERSION}} | Made by @thedancingdansicle"

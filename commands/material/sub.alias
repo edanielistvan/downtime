@@ -1,0 +1,51 @@
+embed <drac2>
+default = get_gvar("48074aca-77bd-47e7-83e4-922f25fde978")
+character_data = load_json(character().get_cvar("tddsc_down_datjson", default=default))
+default = load_json(default)
+
+if character_data["version"] < default["version"]:
+    for k in character_data.keys():
+        if k != "version":
+            default[k] = character_data[k]
+    character_data = default
+
+args = [a.lower() for a in &ARGS&]
+
+TITLE = "Downtime Materials - Substract"
+DESC = "Substracted from the following:"
+
+mats = character_data["mats"]
+tiers = [f"t{i+1}" for i in range(len(mats["wood"]))]
+numbers = [str(i) for i in range(10)]
+
+character_data["mat_undo_type"] = "SUB"
+character_data["mat_undo"]["mats"] = {k: v[:] for k, v in character_data["mats"].items()}
+
+filters = []
+for a in args:
+    if a not in tiers and any(n in a for n in numbers):
+        amount = int(a)
+
+        if amount < 0:
+            DESC += f"\nCouldn't subtract {amount} from materials. Use the `add` command instead."
+            filters = []
+            continue
+
+        filteringKeys = filters and any(k in filters for k in mats.keys())
+        filteringTiers = filters and any(t in filters for t in tiers)
+
+        for k in mats.keys():
+            if not filteringKeys or (filteringKeys and k in filters):
+                DESC += f"\n-{amount} from {k.upper()} ("
+                for i in range(len(mats[k])):
+                    if not filteringTiers or (filteringTiers and f't{i+1}' in filters):
+                        DESC += f"T{i+1} [**{'!' if amount > mats[k][i] else ''}{mats[k][i]-amount}{'! -> 0' if amount > mats[k][i] else ''}**],"
+                        mats[k][i] = max(mats[k][i] - amount, 0)
+                DESC = DESC[:-1] + ")"
+    else:
+        filters.append(a)
+
+VERSION = character_data["version"]
+
+character().set_cvar("tddsc_down_datjson", dump_json(character_data))
+</drac2> -title "{{TITLE}}" -desc "{{DESC}}" -thumb <image> -footer "v{{VERSION}} | Made by @thedancingdansicle"
