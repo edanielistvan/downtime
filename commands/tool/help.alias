@@ -11,9 +11,10 @@ if character_data["version"] < default["version"]:
 
 TITLE = "Downtime Tools - Help"
 DESC = """`!down tool | !down tool help` - Show this screen
-`!down tool list - List all tools
-`!down tool prof  - Add tool proficiency (will overwrite expertise)
-`!down tool exp - Add tool expertise (will overwrite proficiency)"""
+`!down tool list` - List all tools
+`!down tool prof <tool>` - Add tool proficiency (will overwrite expertise)
+`!down tool exp <tool>` - Add tool expertise (will overwrite proficiency)
+`!down tool remove <tool>` - Remove tool proficiency/expertise"""
 VERSION = character_data["version"]
 
 
