@@ -1,5 +1,6 @@
 embed <drac2>
 default = get_gvar("48074aca-77bd-47e7-83e4-922f25fde978")
+info = load_json(get_gvar("13acf697-1859-4c14-8545-415680858a5d"))
 character_data = load_json(character().get_cvar("tddsc_down_datjson", default=default))
 default = load_json(default)
 
@@ -16,7 +17,6 @@ DESC = """`!down tool | !down tool help` - Show this screen
 `!down tool exp <tool>` - Add tool expertise (will overwrite proficiency)
 `!down tool remove <tool>` - Remove tool proficiency/expertise"""
 VERSION = character_data["version"]
-
 
 character().set_cvar("tddsc_down_datjson", dump_json(character_data))
 </drac2> -title "{{TITLE}}" -desc "{{DESC}}" -thumb <image> -footer "v{{VERSION}} | Made by @thedancingdansicle"

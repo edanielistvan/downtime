@@ -1,5 +1,6 @@
 embed <drac2>
 default = get_gvar("48074aca-77bd-47e7-83e4-922f25fde978")
+info = load_json(get_gvar("13acf697-1859-4c14-8545-415680858a5d"))
 character_data = load_json(character().get_cvar("tddsc_down_datjson", default=default))
 default = load_json(default)
 
